@@ -65,8 +65,9 @@ async function signWithSigntool(fileName: string) {
         const debug = core.getInput('debug') == 'true';
         var debug_opt = debug ? '/debug /v' : ''
         var command = `"${signtool}" sign ${debug_opt} /sm /t ${timestampUrl}`
-        const sha1 : string= core.getInput('certificatesha1');
+        let sha1 : string= core.getInput('certificatesha1');
         if (sha1 != ''){
+            sha1 = sha1.toUpperCase()
             command = command + ` /sha1 "${sha1}"`
             vitalParameterIncluded = true;
         }

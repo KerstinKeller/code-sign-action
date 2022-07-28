@@ -18,7 +18,7 @@ This action signs files that are supported by `signtool.exe` with a code signing
 
 **Required** SHA1 hash for the certificate. This and/or the `certificatename` is required for the signing to be successful.
 
-The following command displays the `Cert Hash(sha1)` line, but this hex value must be capitalized.
+The following command displays the `Cert Hash(sha1)` line:
 ```
 > certutil -dump .\certificate.pfx
 ```
