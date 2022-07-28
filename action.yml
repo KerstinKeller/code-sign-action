@@ -5,13 +5,13 @@ branding:
   color: 'green'
 inputs:
   certificate:
-    description: 'The base64 encoded certificate.'
+    description: 'The base64 encoded certificate'
     required: true
   folder:
-    description: 'The folder that contains the files to sign.'
+    description: 'The folder that contains the files to sign'
     required: true
   recursive:
-    description: 'Recursively search for supported files.'
+    description: 'Recursively search for supported files'
     required: false
   password:
     description: 'The password'
@@ -26,9 +26,9 @@ inputs:
     description: 'URL of the timestamp server'
     required: false
   debug:
-    description: 'If true inserts debug options'
+    description: 'Insert the debug option'
     required: false
 
 runs:
-  using: 'node12'
+  using: 'node18'
   main: 'dist/index.js'
