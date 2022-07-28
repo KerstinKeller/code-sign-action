@@ -2,13 +2,31 @@ Thanks to [Dirk Lemstra](https://github.com/dlemstra/code-sign-action) and [Dana
 
 # Code sign a file
 
-This action signs files that are supported by `signtool.exe` with a code signing certificate that takes in a password. This action only works on Windows and that means it should run on `windows-latest`.
+This action signs files that are supported by [signtool.exe](https://docs.microsoft.com/en-us/dotnet/framework/tools/signtool-exe) with a code signing certificate that takes in a password. This action only works on Windows build environments.
 
 ## Inputs
 
 ### `certificate`
 
 **Required** The base64 encoded certificate.
+
+The following [Windows PowerShell](https://en.wikipedia.org/wiki/PowerShell) commands show how to generate a self-signed certificate for testing purposes:
+```
+# https://docs.microsoft.com/en-us/powershell/module/pki/new-selfsignedcertificate
+> $cert = New-SelfSignedCertificate -Subject "CN=TestCert,E=admin@testcert.com" -DnsName testcert.com -HashAlgorithm SHA1 -NotBefore 2022-07-28T20:00 -NotAfter 2032-07-28T20:00 -CertStoreLocation cert:\LocalMachine\My -type CodeSigning
+
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/convertto-securestring
+> $pwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+
+# path to certificate
+> $path = "cert.pfx"
+
+# https://docs.microsoft.com/en-us/powershell/module/pki/export-pfxcertificate
+> Export-PfxCertificate -cert $cert -FilePath $path -Password $pwd
+
+# copy this BASE64 line & paste into a GitHub Secret
+> [convert]::ToBase64String((Get-Content -path $path -Encoding byte))
+```
 
 ### `password`
 
@@ -20,7 +38,8 @@ This action signs files that are supported by `signtool.exe` with a code signing
 
 The following command displays the `Cert Hash(sha1)` line:
 ```
-> certutil -dump .\certificate.pfx
+# 'path' is declared above
+> certutil -dump $path
 ```
 
 ### `certificatename`
@@ -33,7 +52,7 @@ The following command displays the `Cert Hash(sha1)` line:
 
 ### `recursive`
 
-**Optional** Recursively search for DLL files.
+**Optional** If "true" recursively search for DLL files.
 
 ### `timestampUrl`
 
@@ -41,20 +60,19 @@ The following command displays the `Cert Hash(sha1)` line:
 
 ### `debug`
 
-**Optional** If true inserts `/debug /v` options.
+**Optional** If "true" insert `/debug` option in addition to the regular verbose `/v` option.
 
 ## Example usage
 
 ```
-runs-on: windows-latest
+runs-on: windows-2019
 steps:
   uses: OrhanKupusoglu/code-sign-action@master
   with:
-    certificate: '${{ secrets.CERTIFICATE }}'
-    password: '${{ secrets.PASSWORD }}'
-    certificatesha1: '${{ secrets.CERTHASH }}'
-    certificatename: '${{ secrets.CERTNAME }}'
-    folder: 'files'
-    recursive: true
+    certificate: '${{ secrets.CERT_BODY }}'
+    password: '${{ secrets.CERT_PWD }}'
+    certificatesha1: '${{ secrets.CERT_HASH }}'
+    folder: '${{ runner.workspace }}/build'
+    recursive: false
     debug: true
 ```
