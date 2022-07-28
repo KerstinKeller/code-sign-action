@@ -37,7 +37,7 @@ The following command displays the `Cert Hash(sha1)` line:
 
 ### `timestampUrl`
 
-**Optional** Url of the timestamp server.  Default is 'http://timestamp.verisign.com/scripts/timstamp.dll'
+**Optional** Url of the timestamp server.  Default is 'http://timestamp.comodoca.com/authenticode'
 
 ### `debug`
 
@@ -55,7 +55,6 @@ steps:
     certificatesha1: '${{ secrets.CERTHASH }}'
     certificatename: '${{ secrets.CERTNAME }}'
     folder: 'files'
-    timestampUrl: 'http://timestamp.verisign.com/scripts/timstamp.dll'
     recursive: true
     debug: true
 ```

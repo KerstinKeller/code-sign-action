@@ -60,11 +60,11 @@ async function signWithSigntool(fileName: string) {
         var vitalParameterIncluded = false;
         var timestampUrl : string = core.getInput('timestampUrl');
         if (timestampUrl === '') {
-          timestampUrl = 'http://timestamp.verisign.com/scripts/timstamp.dll'; // 'http://timestamp.digicert.com';//
+          timestampUrl = 'http://timestamp.comodoca.com/authenticode';
         }
         const debug = core.getInput('debug') == 'true';
-        var debug_opt = debug ? '/debug /v' : ''
-        var command = `"${signtool}" sign ${debug_opt} /sm /t ${timestampUrl}`
+        var debug_ver = debug ? '/debug /v' : '/v'
+        var command = `"${signtool}" sign ${debug_ver} /sm /t ${timestampUrl}`
         let sha1 : string= core.getInput('certificatesha1');
         if (sha1 != ''){
             sha1 = sha1.toUpperCase()
