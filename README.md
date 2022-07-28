@@ -1,4 +1,4 @@
-Thank you to [Dirk Lemstra](https://github.com/dlemstra/code-sign-action) for providing a base for me to create this action. 
+Thanks to [Dirk Lemstra](https://github.com/dlemstra/code-sign-action) and [Dana-Prajea](https://github.com/Dana-Prajea/code-sign-action) for providing a base to create this action.
 
 # Code sign a file
 
@@ -12,15 +12,15 @@ This action signs files that are supported by `signtool.exe` with a code signing
 
 ### `password`
 
-**Required** Certificate Password. Used to add to the machine store. 
+**Required** Certificate Password. Used to add to the machine store.
 
 ### `certificatesha1`
 
-**Required** SHA1 hash for the certificate. You can obtain this from Microsoft Management Console after double clicking on your certificate (called Thumbprint). This and/or the `certificatename` is required for the signing to be successful. 
+**Required** SHA1 hash for the certificate. You can obtain this from Microsoft Management Console after double clicking on your certificate (called Thumbprint). This and/or the `certificatename` is required for the signing to be successful.
 
 ### `certificatename`
 
-**Required** The name of the certificate. This and/or the `certificatesha1` is required for the signing to be successful. 
+**Required** The name of the certificate. This and/or the `certificatesha1` is required for the signing to be successful.
 
 ### `folder`
 
@@ -34,17 +34,23 @@ This action signs files that are supported by `signtool.exe` with a code signing
 
 **Optional** Url of the timestamp server.  Default is 'http://timestamp.verisign.com/scripts/timstamp.dll'
 
+### `debug`
+
+**Optional** If true inserts `/debug /v` options.
+
 ## Example usage
 
 ```
 runs-on: windows-latest
 steps:
-  uses: DanaBear/code-sign-action@v4
+  uses: OrhanKupusoglu/code-sign-action@master
   with:
     certificate: '${{ secrets.CERTIFICATE }}'
     password: '${{ secrets.PASSWORD }}'
     certificatesha1: '${{ secrets.CERTHASH }}'
     certificatename: '${{ secrets.CERTNAME }}'
     folder: 'files'
+    timestampUrl: 'http://timestamp.verisign.com/scripts/timstamp.dll'
     recursive: true
+    debug: true
 ```

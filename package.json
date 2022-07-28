@@ -4,25 +4,25 @@
   "description": "Sign files with a code signing certificate.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && ncc build lib/index.js -m"
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && tsc && ncc build lib/index.js -m"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanaBear/code-sign-action.git"
+    "url": "git+https://github.com/OrhanKupusoglu/code-sign-action.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DanaBear/code-sign-action/issues"
+    "url": "https://github.com/OrhanKupusoglu/code-sign-action.git/issues"
   },
-  "homepage": "https://github.com/DanaBear/code-sign-action#readme",
+  "homepage": "https://github.com/OrhanKupusoglu/code-sign-action.git#readme",
   "dependencies": {
     "@actions/core": "^1.2.0"
   },
   "devDependencies": {
-    "@types/node": "^12.11.1",
-    "@zeit/ncc": "^0.20.5",
-    "typescript": "^3.6.4"
+    "@types/node": "^18.6.2",
+    "@zeit/ncc": "^0.22.3",
+    "typescript": "^4.7.4"
   }
 }

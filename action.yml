@@ -25,6 +25,9 @@ inputs:
   timestampUrl:
     description: 'URL of the timestamp server'
     required: false
+  debug:
+    description: 'If true inserts debug options'
+    required: false
 
 runs:
   using: 'node12'
