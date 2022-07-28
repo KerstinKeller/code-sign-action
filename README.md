@@ -16,7 +16,12 @@ This action signs files that are supported by `signtool.exe` with a code signing
 
 ### `certificatesha1`
 
-**Required** SHA1 hash for the certificate. You can obtain this from Microsoft Management Console after double clicking on your certificate (called Thumbprint). This and/or the `certificatename` is required for the signing to be successful.
+**Required** SHA1 hash for the certificate. This and/or the `certificatename` is required for the signing to be successful.
+
+The following command displays the `Cert Hash(sha1)` line, but this hex value must be capitalized.
+```
+> certutil -dump .\certificate.pfx
+```
 
 ### `certificatename`
 
