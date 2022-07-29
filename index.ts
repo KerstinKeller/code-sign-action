@@ -63,7 +63,7 @@ async function signWithSigntool(fileName: string) {
           timestampUrl = 'http://timestamp.comodoca.com/authenticode';
         }
         const debug = core.getInput('debug') == 'true';
-        var debug_ver = debug ? '/debug /v' : '/v'
+        var debug_ver = debug ? '/debug' : '/v'
         var command = `"${signtool}" sign ${debug_ver} /sm /t ${timestampUrl}`
         let sha1 : string= core.getInput('certificatesha1');
         if (sha1 != ''){

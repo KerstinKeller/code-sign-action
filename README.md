@@ -60,7 +60,7 @@ The following command displays the `Cert Hash(sha1)` line:
 
 ### `debug`
 
-**Optional** If "true" insert `/debug` option in addition to the regular verbose `/v` option.
+**Optional** If "true" insert `/debug` option instead of the verbose `/v` option.
 
 ## Example usage
 
