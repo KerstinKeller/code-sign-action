@@ -37,7 +37,7 @@ async function createCertificatePfx() {
 
 async function addCertificateToStore(){
     try {
-        const password : string= core.getInput('password');
+        const password : string= core.getInput('cert_pwd');
         if (password == ''){
             console.log("Password is required to add pfx certificate to store");
             return false;
@@ -56,28 +56,27 @@ async function addCertificateToStore(){
 
 async function signWithSigntool(fileName: string) {
     try {
-        // var command = `"${signtool}" sign /sm /t ${timestampUrl} /sha1 "1d7ec06212fdeae92f8d3010ea422ecff2619f5d"  /n "DanaWoo" ${fileName}`
         var vitalParameterIncluded = false;
-        var timestampUrl : string = core.getInput('timestampUrl');
+        var timestampUrl : string = core.getInput('timestamp_url');
         if (timestampUrl === '') {
           timestampUrl = 'http://timestamp.comodoca.com/authenticode';
         }
         const debug = core.getInput('debug') == 'true';
         var debug_ver = debug ? '/debug' : '/v'
         var command = `"${signtool}" sign ${debug_ver} /sm /t ${timestampUrl}`
-        let sha1 : string= core.getInput('certificatesha1');
-        if (sha1 != ''){
-            sha1 = sha1.toUpperCase()
-            command = command + ` /sha1 "${sha1}"`
+        let hash : string= core.getInput('cert_hash');
+        if (hash != ''){
+            hash = hash.toUpperCase()
+            command = command + ` /fd "${hash}"`
             vitalParameterIncluded = true;
         }
-        const name : string= core.getInput('certificatename');
+        const name : string= core.getInput('cert_name');
         if (name != ''){
             vitalParameterIncluded = true;
             command = command + ` /n "${name}"`
         }
         if (!vitalParameterIncluded){
-            console.log("You need to include a NAME or a SHA1 Hash for the certificate to sign with.")
+            console.log("You need to include a NAME, a SHA1 or SHA256 hash for the certificate to sign with.")
         }
         command = command + ` ${fileName}`;
         console.log("Signing command: " + command);
