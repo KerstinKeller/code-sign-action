@@ -67,7 +67,7 @@ async function signWithSigntool(fileName: string) {
         let hash : string= core.getInput('cert_hash');
         if (hash != ''){
             hash = hash.toUpperCase()
-            command = command + ` /fd "${hash}"`
+            command = command + ` /fd certHash /sha1 "${hash}"`
             vitalParameterIncluded = true;
         }
         const name : string= core.getInput('cert_name');
