@@ -63,11 +63,11 @@ async function signWithSigntool(fileName: string) {
         }
         const debug = core.getInput('debug') == 'true';
         var debug_ver = debug ? '/debug' : '/v'
-        var command = `"${signtool}" sign ${debug_ver} /sm /t ${timestampUrl}`
+        var command = `"${signtool}" sign ${debug_ver} /sm /td sha256 /tr ${timestampUrl}`
         let hash : string= core.getInput('cert_hash');
         if (hash != ''){
             hash = hash.toUpperCase()
-            command = command + ` /fd certHash /sha1 "${hash}"`
+            command = command + ` /fd sha256 /sha1 "${hash}"`
             vitalParameterIncluded = true;
         }
         const name : string= core.getInput('cert_name');
