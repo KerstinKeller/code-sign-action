@@ -24,7 +24,7 @@ function sleep(seconds: number) {
 }
 
 async function createCertificatePfx() {
-    const base64Certificate = core.getInput('certificate');
+    const base64Certificate = core.getInput('cert_body');
     const certificate = Buffer.from(base64Certificate, 'base64');
     if (certificate.length == 0) {
         console.log('The value for "certificate" is not set.');
