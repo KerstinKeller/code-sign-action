@@ -13,7 +13,7 @@ inputs:
   recursive:
     description: 'Recursively search for supported files'
     required: false
-  cert_pwd:
+  cert_pswd:
     description: 'The password'
     required: false
   cert_algo:

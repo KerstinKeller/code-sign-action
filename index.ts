@@ -37,7 +37,7 @@ async function createCertificatePfx() {
 
 async function addCertificateToStore(){
     try {
-        const password : string= core.getInput('cert_pwd');
+        const password : string= core.getInput('cert_pswd');
         if (password == ''){
             console.log("Password is required to add pfx certificate to store");
             return false;

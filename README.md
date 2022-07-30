@@ -58,7 +58,7 @@ The following [Windows PowerShell](https://en.wikipedia.org/wiki/PowerShell) com
 > [convert]::ToBase64String((Get-Content -path $path -Encoding byte))
 ```
 
-### `cert_pwd`
+### `cert_pswd`
 
 **Required** Certificate Password. Used to add to the machine store.
 
@@ -106,7 +106,7 @@ steps:
   uses: OrhanKupusoglu/code-sign-action@master
   with:
     cert_body: '${{ secrets.CERT_BODY }}'
-    cert_pwd: '${{ secrets.CERT_PWD }}'
+    cert_pswd: '${{ secrets.CERT_PSWD }}'
     cert_algo: '${{ secrets.CERT_ALGO }}'
     cert_hash: '${{ secrets.CERT_HASH }}'
     timestamp_url: 'http://sha256timestamp.ws.symantec.com/sha256/timestamp'
