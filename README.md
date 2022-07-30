@@ -33,7 +33,7 @@ This action signs files that are supported by [signtool.exe](https://docs.micros
 
 ## Inputs
 
-### `certificate`
+### `cert_body`
 
 **Required** The base64 encoded certificate generated with SHA256.
 
