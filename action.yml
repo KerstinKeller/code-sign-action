@@ -16,8 +16,11 @@ inputs:
   cert_pwd:
     description: 'The password'
     required: false
+  cert_algo:
+    description: 'Algorithm used to generate the certificate'
+    required: false
   cert_hash:
-    description: 'The SHA1 or SHA256 hash of the certificate'
+    description: 'The hash of the certificate'
     required: false
   cert_name:
     description: 'The name of the certificate'

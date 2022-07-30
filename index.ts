@@ -61,13 +61,17 @@ async function signWithSigntool(fileName: string) {
         if (timestampUrl === '') {
           timestampUrl = 'http://timestamp.comodoca.com/authenticode';
         }
+        let cert_algo: string = core.getInput('cert_algo');
+        if (cert_algo === ''){
+            cert_algo = 'sha1'
+        }
         const debug = core.getInput('debug') == 'true';
         var debug_ver = debug ? '/debug' : '/v'
-        var command = `"${signtool}" sign ${debug_ver} /sm /td sha256 /tr ${timestampUrl}`
+        var command = `"${signtool}" sign ${debug_ver} /sm /td ${cert_algo} /tr ${timestampUrl}`
         let hash : string= core.getInput('cert_hash');
         if (hash != ''){
             hash = hash.toUpperCase()
-            command = command + ` /fd sha256 /sha1 "${hash}"`
+            command = command + ` /fd ${cert_algo} /sha1 "${hash}"`
             vitalParameterIncluded = true;
         }
         const name : string= core.getInput('cert_name');
@@ -76,7 +80,7 @@ async function signWithSigntool(fileName: string) {
             command = command + ` /n "${name}"`
         }
         if (!vitalParameterIncluded){
-            console.log("You need to include a NAME, a SHA1 or SHA256 hash for the certificate to sign with.")
+            console.log("You need to include a NAME, or a HASH for the certificate to sign with.")
         }
         command = command + ` ${fileName}`;
         console.log("Signing command: " + command);
