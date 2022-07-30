@@ -39,8 +39,7 @@ This action signs files that are supported by [signtool.exe](https://docs.micros
 
 The following [Windows PowerShell](https://en.wikipedia.org/wiki/PowerShell) commands show how to generate a self-signed certificate for testing purposes:
 - The PowerShell must be started with "Run as administrator".
-- The -HashAlgorithm can be specified as [SHA1](https://en.wikipedia.org/wiki/SHA-1) as well.
-- But the improved [SHA256](https://en.wikipedia.org/wiki/SHA-2) is to be preferred, and only this algorithm is supported by this action.
+- The -HashAlgorithm can be specified as either [SHA1](https://en.wikipedia.org/wiki/SHA-1) or [SHA256](https://en.wikipedia.org/wiki/SHA-2).
 
 ```
 # https://docs.microsoft.com/en-us/powershell/module/pki/new-selfsignedcertificate
@@ -81,7 +80,7 @@ The following command displays the `Cert Hash(sha1)` line even for SHA256:
 
 ### `cert_name`
 
-**Optional** The name of the certificate. This and/or the `cert_hash` is required for the signing to be successful.
+**Optional** This string is passed as the '/n' option. This and/or the `cert_hash` is required for the signing to be successful.
 
 ### `timestamp_url`
 
