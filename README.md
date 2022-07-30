@@ -69,7 +69,7 @@ The following [Windows PowerShell](https://en.wikipedia.org/wiki/PowerShell) com
 
 ### `cert_hash`
 
-**Required** The hash of the certificate. This and/or the `cert_name` is required for the signing to be successful.
+**Optional** The hash of the certificate. This and/or the `cert_name` is required for the signing to be successful.
 
 The following command displays the `Cert Hash(sha1)` line even for SHA256:
 ```
@@ -81,7 +81,7 @@ The following command displays the `Cert Hash(sha1)` line even for SHA256:
 
 ### `cert_name`
 
-**Required** The name of the certificate. This and/or the `cert_hash` is required for the signing to be successful.
+**Optional** The name of the certificate. This and/or the `cert_hash` is required for the signing to be successful.
 
 ### `timestamp_url`
 
