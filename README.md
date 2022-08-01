@@ -84,7 +84,7 @@ The following command displays the `Cert Hash(sha1)` line even for SHA256:
 
 ### `timestamp_url`
 
-**Optional** Url of the timestamp server.  Its default value is 'http://timestamp.comodoca.com/authenticode'.
+**Optional** Url of the timestamp server.  Its default value is 'http://sha256timestamp.ws.symantec.com/sha256/timestamp'.
 
 ### `folder`
 
@@ -109,7 +109,7 @@ steps:
     cert_pswd: '${{ secrets.CERT_PSWD }}'
     cert_algo: '${{ secrets.CERT_ALGO }}'
     cert_hash: '${{ secrets.CERT_HASH }}'
-    timestamp_url: 'http://sha256timestamp.ws.symantec.com/sha256/timestamp'
+    timestamp_url: 'http://tsa.quovadisglobal.com/TSS/HttpTspServer'
     folder: '${{ runner.workspace }}/build'
     debug: true
 ```

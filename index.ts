@@ -59,7 +59,7 @@ async function signWithSigntool(fileName: string) {
         var vitalParameterIncluded = false;
         var timestampUrl : string = core.getInput('timestamp_url');
         if (timestampUrl === '') {
-          timestampUrl = 'http://timestamp.comodoca.com/authenticode';
+            timestampUrl = 'http://sha256timestamp.ws.symantec.com/sha256/timestamp';
         }
         let cert_algo: string = core.getInput('cert_algo');
         if (cert_algo === ''){
