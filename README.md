@@ -103,13 +103,12 @@ The following command displays the `Cert Hash(sha1)` line even for SHA256:
 ```
 runs-on: windows-2019
 steps:
-  uses: OrhanKupusoglu/code-sign-action@master
+  uses: OrhanKupusoglu/code-sign-action@v5.5.1
   with:
     cert_body: '${{ secrets.CERT_BODY }}'
     cert_pswd: '${{ secrets.CERT_PSWD }}'
     cert_algo: '${{ secrets.CERT_ALGO }}'
     cert_hash: '${{ secrets.CERT_HASH }}'
-    timestamp_url: 'http://tsa.quovadisglobal.com/TSS/HttpTspServer'
     folder: '${{ runner.workspace }}/build'
     debug: true
 ```
